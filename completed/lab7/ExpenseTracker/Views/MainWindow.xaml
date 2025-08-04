@@ -1,0 +1,415 @@
+<Window x:Class="ExpenseTracker.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExpenseTracker.Views"
+        xmlns:vm="clr-namespace:ExpenseTracker.ViewModels"
+        xmlns:models="clr-namespace:ExpenseTracker.Models"
+        xmlns:converters="clr-namespace:ExpenseTracker.Converters"
+        mc:Ignorable="d"
+        Title="Expense Tracker" Height="700" Width="1200"
+        WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+    
+    <Window.Resources>
+        <converters:CurrencyConverter x:Key="CurrencyConverter" />
+        <converters:EnumDescriptionConverter x:Key="EnumDescriptionConverter" />
+        
+        <!-- Modern Card Style -->
+        <Style x:Key="CardStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="16"/>
+            <Setter Property="Margin" Value="8"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="Gray" Direction="315" ShadowDepth="2" Opacity="0.3" BlurRadius="5"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!-- Button Style -->
+        <Style x:Key="ModernButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#2196F3"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="16,8"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="4" 
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#1976D2"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#0D47A1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!-- Delete Button Style -->
+        <Style x:Key="DeleteButtonStyle" TargetType="Button" BasedOn="{StaticResource ModernButtonStyle}">
+            <Setter Property="Background" Value="#F44336"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#D32F2F"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#B71C1C"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <!-- TextBox Style -->
+        <Style x:Key="ModernTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="#2196F3"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <!-- ComboBox Style -->
+        <Style x:Key="ModernComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="BorderBrush" Value="#CCCCCC"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#F5F5F5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#2196F3" Padding="20">
+            <TextBlock Text="Personal Expense Tracker" 
+                       FontSize="24" 
+                       FontWeight="Bold" 
+                       Foreground="White" 
+                       HorizontalAlignment="Center"/>
+        </Border>
+        
+        <!-- Main Content -->
+        <Grid Grid.Row="1" Margin="16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="350"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Left Panel - Add Expense Form -->
+            <Border Grid.Column="0" Style="{StaticResource CardStyle}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <TextBlock Text="Add New Expense" 
+                                   FontSize="18" 
+                                   FontWeight="Bold" 
+                                   Margin="0,0,0,16" 
+                                   Foreground="#333"/>
+                        
+                        <Label Content="Description:" FontWeight="SemiBold"/>
+                        <TextBox Text="{Binding NewExpenseDescription, UpdateSourceTrigger=PropertyChanged}" 
+                                 Style="{StaticResource ModernTextBoxStyle}"
+                                 Margin="0,0,0,12"/>
+                        
+                        <Label Content="Amount:" FontWeight="SemiBold"/>
+                        <TextBox Text="{Binding NewExpenseAmountText, UpdateSourceTrigger=PropertyChanged}" 
+                                 Style="{StaticResource ModernTextBoxStyle}"
+                                 Margin="0,0,0,12"/>
+                        
+                        <Label Content="Category:" FontWeight="SemiBold"/>
+                        <ComboBox SelectedItem="{Binding NewExpenseCategory}" 
+                                  Style="{StaticResource ModernComboBoxStyle}"
+                                  Margin="0,0,0,12">
+                            <ComboBox.ItemsSource>
+                                <x:Array Type="{x:Type models:ExpenseCategory}">
+                                    <models:ExpenseCategory>Food</models:ExpenseCategory>
+                                    <models:ExpenseCategory>Transport</models:ExpenseCategory>
+                                    <models:ExpenseCategory>Entertainment</models:ExpenseCategory>
+                                    <models:ExpenseCategory>Utilities</models:ExpenseCategory>
+                                    <models:ExpenseCategory>Healthcare</models:ExpenseCategory>
+                                    <models:ExpenseCategory>Shopping</models:ExpenseCategory>
+                                    <models:ExpenseCategory>Other</models:ExpenseCategory>
+                                </x:Array>
+                            </ComboBox.ItemsSource>
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource EnumDescriptionConverter}}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        
+                        <Label Content="Date:" FontWeight="SemiBold"/>
+                        <DatePicker SelectedDate="{Binding NewExpenseDate}" 
+                                    Margin="0,0,0,12"/>
+                        
+                        <Label Content="Payment Method:" FontWeight="SemiBold"/>
+                        <ComboBox SelectedItem="{Binding NewExpensePaymentMethod}" 
+                                  Style="{StaticResource ModernComboBoxStyle}"
+                                  Margin="0,0,0,12">
+                            <ComboBox.ItemsSource>
+                                <x:Array Type="{x:Type models:PaymentMethod}">
+                                    <models:PaymentMethod>Cash</models:PaymentMethod>
+                                    <models:PaymentMethod>Credit</models:PaymentMethod>
+                                    <models:PaymentMethod>Debit</models:PaymentMethod>
+                                    <models:PaymentMethod>BankTransfer</models:PaymentMethod>
+                                    <models:PaymentMethod>DigitalWallet</models:PaymentMethod>
+                                </x:Array>
+                            </ComboBox.ItemsSource>
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource EnumDescriptionConverter}}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        
+                        <CheckBox Content="Recurring Expense" 
+                                  IsChecked="{Binding NewExpenseIsRecurring}" 
+                                  Margin="0,0,0,12"
+                                  FontWeight="SemiBold"/>
+                        
+                        <Label Content="Notes:" FontWeight="SemiBold"/>
+                        <TextBox Text="{Binding NewExpenseNotes, UpdateSourceTrigger=PropertyChanged}" 
+                                 Style="{StaticResource ModernTextBoxStyle}"
+                                 Height="60" 
+                                 TextWrapping="Wrap" 
+                                 AcceptsReturn="True"
+                                 VerticalScrollBarVisibility="Auto"
+                                 Margin="0,0,0,16"/>
+                        
+                        <Button Content="Add Expense" 
+                                Command="{Binding AddExpenseCommand}" 
+                                Style="{StaticResource ModernButtonStyle}"
+                                HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+            
+            <!-- Center Panel - Expenses List -->
+            <Border Grid.Column="1" Style="{StaticResource CardStyle}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Grid.Row="0" 
+                               Text="Expense History" 
+                               FontSize="18" 
+                               FontWeight="Bold" 
+                               Margin="0,0,0,16" 
+                               Foreground="#333"/>
+                    
+                    <!-- Filter Controls -->
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,12">
+                        <Label Content="Filter by Category:" FontWeight="SemiBold" VerticalAlignment="Center"/>
+                        <ComboBox SelectedItem="{Binding FilterCategory}" 
+                                  Style="{StaticResource ModernComboBoxStyle}"
+                                  Width="150"
+                                  Margin="8,0">
+                            <ComboBox.ItemsSource>
+                                <x:Array Type="{x:Type models:ExpenseCategory}">
+                                    <models:ExpenseCategory>Food</models:ExpenseCategory>
+                                    <models:ExpenseCategory>Transport</models:ExpenseCategory>
+                                    <models:ExpenseCategory>Entertainment</models:ExpenseCategory>
+                                    <models:ExpenseCategory>Utilities</models:ExpenseCategory>
+                                    <models:ExpenseCategory>Healthcare</models:ExpenseCategory>
+                                    <models:ExpenseCategory>Shopping</models:ExpenseCategory>
+                                    <models:ExpenseCategory>Other</models:ExpenseCategory>
+                                </x:Array>
+                            </ComboBox.ItemsSource>
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource EnumDescriptionConverter}}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Button Content="Clear Filter" 
+                                Command="{Binding ClearFilterCommand}" 
+                                Style="{StaticResource ModernButtonStyle}"
+                                Margin="8,0"/>
+                    </StackPanel>
+                    
+                    <!-- DataGrid -->
+                    <DataGrid Grid.Row="2" 
+                              ItemsSource="{Binding FilteredExpenses}"
+                              SelectedItem="{Binding SelectedExpense}"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              CanUserDeleteRows="False"
+                              IsReadOnly="True"
+                              GridLinesVisibility="Horizontal"
+                              HorizontalGridLinesBrush="#E0E0E0"
+                              HeadersVisibility="Column"
+                              SelectionMode="Single"
+                              AlternatingRowBackground="#F9F9F9">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Date" 
+                                                Binding="{Binding FormattedDate}" 
+                                                Width="100"/>
+                            <DataGridTextColumn Header="Description" 
+                                                Binding="{Binding Description}" 
+                                                Width="*"/>
+                            <DataGridTextColumn Header="Category" 
+                                                Binding="{Binding Category, Converter={StaticResource EnumDescriptionConverter}}" 
+                                                Width="120"/>
+                            <DataGridTextColumn Header="Amount" 
+                                                Binding="{Binding Amount, Converter={StaticResource CurrencyConverter}}" 
+                                                Width="100">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                                        <Setter Property="FontWeight" Value="SemiBold"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Payment" 
+                                                Binding="{Binding PaymentMethod, Converter={StaticResource EnumDescriptionConverter}}" 
+                                                Width="100"/>
+                            <DataGridTextColumn Header="Recurring" 
+                                                Binding="{Binding IsRecurring}" 
+                                                Width="80"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    
+                    <!-- Action Buttons -->
+                    <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
+                        <Button Content="Delete Selected" 
+                                Command="{Binding DeleteExpenseCommand}" 
+                                Style="{StaticResource DeleteButtonStyle}"
+                                IsEnabled="{Binding SelectedExpense, Converter={x:Static converters:NullToBooleanConverter.Instance}}"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            
+            <!-- Right Panel - Statistics -->
+            <Border Grid.Column="2" Style="{StaticResource CardStyle}">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <TextBlock Text="Statistics" 
+                                   FontSize="18" 
+                                   FontWeight="Bold" 
+                                   Margin="0,0,0,16" 
+                                   Foreground="#333"/>
+                        
+                        <!-- Quick Stats -->
+                        <Border Background="#E3F2FD" 
+                                BorderBrush="#2196F3" 
+                                BorderThickness="1" 
+                                CornerRadius="4" 
+                                Padding="12" 
+                                Margin="0,0,0,12">
+                            <StackPanel>
+                                <TextBlock Text="Today's Expenses" 
+                                           FontWeight="SemiBold" 
+                                           Foreground="#1976D2"/>
+                                <TextBlock Text="{Binding TotalToday, Converter={StaticResource CurrencyConverter}}" 
+                                           FontSize="20" 
+                                           FontWeight="Bold" 
+                                           Foreground="#1976D2"/>
+                            </StackPanel>
+                        </Border>
+                        
+                        <Border Background="#E8F5E8" 
+                                BorderBrush="#4CAF50" 
+                                BorderThickness="1" 
+                                CornerRadius="4" 
+                                Padding="12" 
+                                Margin="0,0,0,16">
+                            <StackPanel>
+                                <TextBlock Text="This Month's Expenses" 
+                                           FontWeight="SemiBold" 
+                                           Foreground="#388E3C"/>
+                                <TextBlock Text="{Binding TotalThisMonth, Converter={StaticResource CurrencyConverter}}" 
+                                           FontSize="20" 
+                                           FontWeight="Bold" 
+                                           Foreground="#388E3C"/>
+                            </StackPanel>
+                        </Border>
+                        
+                        <!-- Category Breakdown -->
+                        <TextBlock Text="Expenses by Category" 
+                                   FontSize="16" 
+                                   FontWeight="Bold" 
+                                   Margin="0,0,0,8" 
+                                   Foreground="#333"/>
+                        
+                        <ItemsControl ItemsSource="{Binding ExpensesByCategory}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="White" 
+                                            BorderBrush="#E0E0E0" 
+                                            BorderThickness="1" 
+                                            CornerRadius="4" 
+                                            Padding="8" 
+                                            Margin="0,2"
+                                            Cursor="Hand">
+                                        <Border.InputBindings>
+                                            <MouseBinding MouseAction="LeftClick" 
+                                                          Command="{Binding DataContext.FilterByCategoryCommand, RelativeSource={RelativeSource AncestorType=Window}}" 
+                                                          CommandParameter="{Binding Category}"/>
+                                        </Border.InputBindings>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            
+                                            <TextBlock Grid.Row="0" Grid.Column="0" 
+                                                       Text="{Binding Category, Converter={StaticResource EnumDescriptionConverter}}" 
+                                                       FontWeight="SemiBold"/>
+                                            <TextBlock Grid.Row="0" Grid.Column="1" 
+                                                       Text="{Binding FormattedTotal}" 
+                                                       FontWeight="Bold" 
+                                                       HorizontalAlignment="Right"/>
+                                            <TextBlock Grid.Row="1" Grid.Column="0" 
+                                                       Text="{Binding Count, StringFormat=\{0\} expenses}" 
+                                                       FontSize="12" 
+                                                       Foreground="Gray"/>
+                                            <TextBlock Grid.Row="1" Grid.Column="1" 
+                                                       Text="{Binding FormattedPercentage}" 
+                                                       FontSize="12" 
+                                                       Foreground="Gray" 
+                                                       HorizontalAlignment="Right"/>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

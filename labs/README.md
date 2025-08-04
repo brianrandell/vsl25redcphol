@@ -8,7 +8,7 @@ This folder contains all the step-by-step lab instructions for the GitHub Copilo
 * Ask Mode vs Agent Mode demonstrations
 * Next Edit Suggestions for productivity
 * AI-powered debugging techniques
-* .NET MCP Server creation and popular Microsoft MCP servers
+* MCP server integration with Microsoft Learn and other popular servers
 
 ## Table of Contents
 
@@ -22,6 +22,20 @@ This folder contains all the step-by-step lab instructions for the GitHub Copilo
 | [4](lab4-testing-copilot.md) | **Test-Driven Development** | 30 minutes | Unit testing, integration testing, test data builders | Lab 3 complete |
 | [5](lab5-debugging-copilot.md) | **Debugging with Copilot** | 20 minutes | Exception analysis, breakpoints, performance debugging | Lab 4 complete |
 | [6](lab6-database-sql.md) | **Database and SQL Development** | 35 minutes | Entity Framework Core, migrations, repository patterns | Lab 5 complete |
+| [7](lab7-wpf-desktop.md) | **WPF Desktop Development** | 30 minutes | MVVM pattern, data binding, desktop UI design | Lab 6 complete |
+| [8](lab8-advanced-copilot.md) | **Advanced Copilot Techniques** | 45 minutes | Enterprise patterns, security, performance optimization, MCP servers | Lab 7 complete |
+
+### Visual Studio Code Exclusive Labs
+
+| Lab | Title | Duration | Focus Area | Prerequisites |
+|-----|-------|----------|------------|---------------|
+| [9](lab9-vscode-and-copilot.md) | **VS Code Exclusive Features (C#)** | 35 minutes | Agent Mode, Next Edit Suggestions, MCP integration | VS Code, C# Dev Kit, GitHub Copilot |
+
+### GitHub Platform Labs
+
+| Lab | Title | Duration | Focus Area | Prerequisites |
+|-----|-------|----------|------------|---------------|
+| [10](lab10-github-copilot-agent.md) | **GitHub Copilot Coding Agent** | 35 minutes | Autonomous AI development, issue-driven coding | GitHub Copilot Pro, VS Code |
 
 ## Lab Descriptions
 
@@ -67,6 +81,34 @@ Learn database integration using Entity Framework Core with Copilot. Implement r
 **What You'll Build**: API with Entity Framework Core and SQL Server  
 **Key Skills**: EF Core, migrations, repository pattern, database seeding
 
+### **Lab 7: WPF Desktop Development**
+
+Explore desktop application development using WPF and MVVM patterns with Copilot assistance. Build a rich desktop expense tracker with data binding, validation, and local data persistence.
+
+**What You'll Build**: WPF expense tracking desktop application  
+**Key Skills**: MVVM pattern, data binding, WPF controls, value converters
+
+### **Lab 8: Advanced Copilot Techniques**
+
+Master enterprise-level development with advanced Copilot techniques. Implement security patterns, performance optimization, advanced design patterns, and integrate with MCP servers for extending Copilot capabilities.
+
+**What You'll Build**: Enterprise-grade API with advanced patterns and MCP integration  
+**Key Skills**: Security, performance, design patterns, MCP server integration, monitoring
+
+### **Lab 9: VS Code Exclusive Features**
+
+Explore cutting-edge Copilot features available exclusively in Visual Studio Code. Learn Agent Mode, Next Edit Suggestions, and MCP (Model Context Protocol) integration for enhanced development experiences.
+
+**What You'll Build**: Book Library API with VS Code exclusive features  
+**Key Skills**: Agent Mode, Next Edit Suggestions, MCP servers
+
+### **Lab 10: GitHub Copilot Coding Agent**
+
+Experience the future of AI-driven development with GitHub's Copilot Coding Agent. Learn to create effective GitHub issues for autonomous AI development and review AI-generated pull requests.
+
+**What You'll Build**: Interactive calculator enhanced by AI agent  
+**Key Skills**: Issue writing, AI delegation, code review, autonomous development
+
 ## Getting Started
 
 ### Prerequisites
@@ -74,7 +116,7 @@ Learn database integration using Entity Framework Core with Copilot. Implement r
 * **Visual Studio 2022** (any edition) with GitHub Copilot extension
 * **Visual Studio Code** with C# Dev Kit and GitHub Copilot (for Labs 8-9)
 * **GitHub account** with active Copilot subscription
-* **GitHub Copilot Pro** (required for Lab 9 & 10)
+* **GitHub Copilot Pro** (required for Lab 9)
 * **Basic C# knowledge** recommended
 
 ### Recommended Lab Sequence
@@ -83,6 +125,19 @@ Learn database integration using Entity Framework Core with Copilot. Implement r
 
 1. Complete Labs 1-8 in sequence
 2. Optional: Explore Labs 9-10 for VS Code comparison
+
+**For Multi-IDE Experience:**
+
+1. Complete Labs 1-5 in Visual Studio 2022
+2. Switch to Lab 9 in VS Code for exclusive features
+3. Continue with Lab 10 for GitHub.com integration
+4. Return to Labs 6-8 in Visual Studio 2022
+
+**For Advanced Users:**
+
+* Jump to any lab of interest
+* Each lab includes prerequisite information
+* Completed solutions available in `/completed` folder
 
 ## Lab Structure
 

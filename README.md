@@ -70,14 +70,33 @@ Reference implementations and working solutions for all lab exercises. Use these
 * README for each solution with setup instructions
 * Build-ready projects with all dependencies resolved
 
+### 🎤 [Presenter Notes (`/notes`)](notes/README.md)
+
+Detailed presentation materials and demo scripts for instructors. Contains timing guidance, troubleshooting tips, and
+ key teaching points for effective training delivery.
+
+**What's Inside:**
+
+* Demo scripts with minute-by-minute timing
+* Troubleshooting guides for common issues
+* Audience engagement strategies and discussion prompts
+* Technical setup requirements and backup plans
+
 ## Getting Started
 
 ### For Participants
 
 1. **Start Here**: Review this README and the [lab instructions](labs/README.md)
 2. **Setup**: Ensure all prerequisite software is installed (see requirements above)
-3. **Practice**: Work through labs 1-6 at your own pace
+3. **Practice**: Work through labs 1-9 at your own pace
 4. **Reference**: Use [completed solutions](completed/README.md) when needed
+
+### For Instructors
+
+1. **Preparation**: Review [presenter notes](notes/README.md) and demo requirements
+2. **Setup**: Test all demo environments and backup plans
+3. **Delivery**: Follow provided timing and engagement strategies
+4. **Support**: Use troubleshooting guides for participant assistance
 
 ## Training Objectives
 
@@ -92,7 +111,7 @@ By completing this hands-on lab, you will:
 
 ## Session Format
 
-* **Duration**: Full day (~6 hours)
+* **Duration**: Full day (6 hours)
 * **Format**: Interactive hands-on workshop
 * **Structure**: Demo → Practice → Discussion cycle
 * **Materials**: All provided in this repository

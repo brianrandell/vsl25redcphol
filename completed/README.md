@@ -112,6 +112,76 @@ Database integration using Entity Framework Core with SQL Server. Demonstrates r
 **Getting Started**: Set `ProductInventoryAPIwithEFC` as startup project and press F5 (auto-creates database)
 
 ---
+
+### [Lab 7: WPF Desktop Development - Expense Tracker](lab7/README.md)
+
+**Duration**: 30 minutes | **Technology**: WPF Application (.NET 9)
+
+Modern desktop application development with WPF using MVVM pattern. Rich UI with data binding, validation, and local data persistence.
+
+**Key Features**:
+
+* MVVM architecture with data binding
+* Rich WPF UI with DataGrid and forms
+* Value converters and validation
+* Local JSON storage
+
+**Getting Started**: Set `ExpenseTracker` as startup project and press F5
+
+---
+
+### [Lab 8: Advanced Copilot Techniques - Enterprise API](lab8/README.md)
+
+**Duration**: 35 minutes | **Technology**: ASP.NET Core 9.0 + Advanced Patterns
+
+Enterprise-level application demonstrating advanced Copilot techniques including security, performance optimization, design patterns, and comprehensive testing.
+
+**Key Features**:
+
+* Security (XSS protection, input sanitization)
+* Performance (caching, resilience patterns with Polly)
+* Design patterns (Factory, Decorator, Strategy, Saga)
+* Advanced error handling and monitoring
+* Comprehensive integration testing
+
+**Getting Started**: Set `AdvancedCopilotAPI` as startup project and press F5 (opens Swagger UI)
+
+---
+
+### [Lab 9: VS Code Exclusive Copilot Features - Book Library API](lab9/README.md)
+
+**Duration**: 30 minutes | **Technology**: ASP.NET Core 9.0 Web API + VS Code Features
+
+Comprehensive book library management API demonstrating VS Code exclusive Copilot features including Agent Mode, Next Edit Suggestions, and MCP integration using C#/.NET 9.0.
+
+**Key Features**:
+
+* Agent Mode for autonomous coding and project understanding
+* Next Edit Suggestions for predictive refactoring
+* MCP integration for enhanced context and real-time documentation access
+* Full CRUD operations with advanced search and statistics
+* Comprehensive integration testing
+
+**Getting Started**: Open in VS Code, set `BookLibraryAPI` as startup project and run with `dotnet run`
+
+---
+
+### [Lab 10: GitHub Copilot Agent - Interactive Calculator](lab10/README.md)
+
+**Duration**: 25 minutes | **Technology**: .NET 9.0 Console Application
+
+Demonstrates using GitHub Copilot Agent to autonomously develop a feature-rich interactive calculator from a GitHub issue. Learn how to write effective prompts for AI-driven development and review AI-generated code.
+
+**Key Features**:
+
+* Interactive menu with 5 mathematical operations
+* Calculation history with timestamps
+* Memory functions (M+, M-, MR, MC)
+* Professional error handling and input validation
+* History export to text files
+
+**Getting Started**: Set `CalculatorApp` as startup project and press F5
+
 ## Solution Structure
 
 ``` shell
@@ -123,6 +193,15 @@ completed/
 ├── lab4/                       # API testing suite
 ├── lab5/                       # Debugging with Copilot
 ├── lab6/                       # Web API with Entity Framework
+├── lab7/                       # WPF desktop application
+├── lab8/                       # Advanced enterprise API
+│   ├── AdvancedCopilotAPI/     # Main API project
+│   └── AdvancedCopilotAPI.Tests/ # Integration tests
+├── lab9/                       # VS Code exclusive features (C#)
+│   ├── BookLibraryAPI/         # Book library Web API
+│   └── BookLibraryAPI.Tests/   # Integration tests
+└── lab10/                      # GitHub Copilot Agent
+    └── CalculatorApp/          # Interactive calculator console app
 ```
 
 ## Prerequisites
@@ -149,6 +228,10 @@ completed/
 | 4 | xUnit Testing | None | None | xUnit + FluentAssertions |
 | 5 | .NET 9 Console | None | Console | None |
 | 6 | ASP.NET Core + EF Core | SQL Server | Swagger UI | None |
+| 7 | WPF Desktop | JSON Files | WPF/XAML | None |
+| 8 | ASP.NET Core 9.0 | In-Memory | Swagger UI | xUnit Integration Tests |
+| 9 | ASP.NET Core 9.0 Web API | SQLite + EF Core | Swagger UI | xUnit Integration Tests |
+| 10| .NET 9.0 Console | File Export | Console | None |
 
 ## Learning Progression
 
@@ -160,8 +243,18 @@ The labs are designed to build upon each other:
 4. **Lab 4**: Test-driven development with Copilot
 5. **Lab 5**: Debugging techniques and performance optimization
 6. **Lab 6**: Database integration and data persistence
+7. **Lab 7**: Desktop UI development with WPF
+8. **Lab 8**: Enterprise patterns and advanced techniques
+9. **Lab 9**: VS Code exclusive features and MCP integration
+10. **Lab 10**: GitHub Copilot Agent and autonomous development
 
 ## Build and Test Status
+
+All projects build successfully with:
+
+* ✅ **0 Warnings**
+* ✅ **0 Errors**  
+* ✅ **All Dependencies Resolved**
 
 ### Running All Tests
 
@@ -209,4 +302,4 @@ dotnet test --logger "console;verbosity=detailed"
 
 ---
 
-**Training Context**: These labs were created for VSLIVE! 2025 Redmond GitHub Copilot training session. They demonstrate practical, real-world usage of GitHub Copilot across different development scenarios and technologies. That said it is demo code and AI did help. :D 
+**Training Context**: These labs were created for VSLIVE! 2025 Redmond GitHub Copilot training session. They demonstrate practical, real-world usage of GitHub Copilot across different development scenarios and technologies.
