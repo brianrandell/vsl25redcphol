@@ -45,7 +45,7 @@ In this lab, you'll explore GitHub's new Copilot Coding Agent (currently in prev
    * Click the "+" icon in the top-right corner → "New repository"
    * Repository name: `copilot-calculator-agent`
    * Description: "Calculator app enhanced by GitHub Copilot Coding Agent"
-   * Make it **Public** (required for Coding Agent in most cases)
+   * Make it **Public** or **Private**
    * Check "Add a README file"
    * Add `.gitignore` template: select "VisualStudio"
    * Click "Create repository"
