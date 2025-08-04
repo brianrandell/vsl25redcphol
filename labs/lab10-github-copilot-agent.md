@@ -169,7 +169,7 @@ In this lab, you'll explore GitHub's new Copilot Coding Agent (currently in prev
    ```
 
    * Add labels: `enhancement`, `copilot-ready`
-   * Click "Submit new issue"
+   * Click "Create"
 
 ---
 
