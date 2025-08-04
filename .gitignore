@@ -416,3 +416,9 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# macOS .DS_Store files
+.DS_Store
+
+# nul files used by some tools
+nul
