@@ -179,20 +179,14 @@ In this lab, you'll explore GitHub's new Copilot Coding Agent (currently in prev
 
 1. **Install required extensions in VS Code:**
 
-   * Ensure you have the **GitHub Pull Requests and Issues** extension installed (if not, install it)
+   * Ensure you have the **GitHub Pull Requests** extension installed (if not, install it)
    * Verify **GitHub Copilot** extension is active and signed in
 
 2. **Enable Coding Agent UI Integration:**
 
    * Open VS Code Settings (`Ctrl+,` or `Cmd+,`)
    * Search for "coding agent"
-   * Add the following setting to your `settings.json`:
-
-   ```json
-   {
-     "githubPullRequests.codingAgent.uiIntegration": true
-   }
-   ```
+   * Check the setting `GitHub Pull Requests › Coding Agent: Ui Integration`
 
 3. **Verify GitHub authentication:**
 
