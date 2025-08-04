@@ -23,13 +23,13 @@ This folder contains all the step-by-step lab instructions for the GitHub Copilo
 | [5](lab5-debugging-copilot.md) | **Debugging with Copilot** | 20 minutes | Exception analysis, breakpoints, performance debugging | Lab 4 complete |
 | [6](lab6-database-sql.md) | **Database and SQL Development** | 35 minutes | Entity Framework Core, migrations, repository patterns | Lab 5 complete |
 | [7](lab7-wpf-desktop.md) | **WPF Desktop Development** | 30 minutes | MVVM pattern, data binding, desktop UI design | Lab 6 complete |
-| [8](lab8-advanced-copilot.md) | **Advanced Copilot Techniques** | 45 minutes | Enterprise patterns, security, performance optimization, MCP servers | Lab 7 complete |
+| [8](lab8-advanced-copilot.md) | **Advanced Copilot Techniques** | 45 minutes | Enterprise patterns, security, performance optimization, Microsoft Learn MCP integration | Lab 7 complete |
 
 ### Visual Studio Code Exclusive Labs
 
 | Lab | Title | Duration | Focus Area | Prerequisites |
 |-----|-------|----------|------------|---------------|
-| [9](lab9-vscode-and-copilot.md) | **VS Code Exclusive Features (C#)** | 35 minutes | Agent Mode, Next Edit Suggestions, MCP integration | VS Code, C# Dev Kit, GitHub Copilot |
+| [9](lab9-vscode-and-copilot.md) | **VS Code Exclusive Features (C#)** | 50 minutes | Custom instructions, edit/iterate, terminal auto-approval, local MCP, extension integration | VS Code, C# Dev Kit, GitHub Copilot, .NET 9.0 SDK |
 
 ### GitHub Platform Labs
 
@@ -90,17 +90,17 @@ Explore desktop application development using WPF and MVVM patterns with Copilot
 
 ### **Lab 8: Advanced Copilot Techniques**
 
-Master enterprise-level development with advanced Copilot techniques. Implement security patterns, performance optimization, advanced design patterns, and integrate with MCP servers for extending Copilot capabilities.
+Master enterprise-level development with advanced Copilot techniques. Implement security patterns, performance optimization, advanced design patterns, and integrate with Microsoft Learn MCP server for real-time documentation access.
 
-**What You'll Build**: Enterprise-grade API with advanced patterns and MCP integration  
-**Key Skills**: Security, performance, design patterns, MCP server integration, monitoring
+**What You'll Build**: Enterprise-grade API with advanced patterns and Microsoft Learn MCP integration  
+**Key Skills**: Security, performance, design patterns, HTTP-based MCP integration, monitoring
 
 ### **Lab 9: VS Code Exclusive Features**
 
-Explore cutting-edge Copilot features available exclusively in Visual Studio Code. Learn Agent Mode, Next Edit Suggestions, and MCP (Model Context Protocol) integration for enhanced development experiences.
+Explore advanced Copilot features exclusive to Visual Studio Code using C#/.NET 9.0. Master automatic instruction generation, conversation editing, terminal auto-approval, local MCP integration, and deep extension ecosystem integration.
 
-**What You'll Build**: Book Library API with VS Code exclusive features  
-**Key Skills**: Agent Mode, Next Edit Suggestions, MCP servers
+**What You'll Build**: Book Library API with advanced VS Code Copilot features  
+**Key Skills**: Custom instructions, edit/iterate conversations, terminal auto-approval, local MCP servers, multi-root workspaces, extension integration
 
 ### **Lab 10: GitHub Copilot Coding Agent**
 
@@ -114,9 +114,10 @@ Experience the future of AI-driven development with GitHub's Copilot Coding Agen
 ### Prerequisites
 
 * **Visual Studio 2022** (any edition) with GitHub Copilot extension
-* **Visual Studio Code** with C# Dev Kit and GitHub Copilot (for Labs 8-9)
+* **Visual Studio Code** with C# Dev Kit and GitHub Copilot (for Lab 9)
 * **GitHub account** with active Copilot subscription
-* **GitHub Copilot Pro** (required for Lab 9)
+* **GitHub Copilot Pro** (required for Lab 10)
+* **.NET 9.0 SDK** (for Lab 9)
 * **Basic C# knowledge** recommended
 
 ### Recommended Lab Sequence
